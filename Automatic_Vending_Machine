@@ -1,0 +1,130 @@
+Question:-
+There is an automatic vending machine that decides what items it will give out for the money inserted into it.
+
+The vending machine has 2 kinds of items - Snacks Drinks. The rate card is below
+
+SNACKS        | Price | Drinks        | Price
+--------------------------------------------------------
+Potato Chips  |  10   | Coke          |  7 
+Cracker       |  12   | Lemonade      |  10 
+PopCorn       |  5    | Orange Juice  |  11
+Cashew        |  15   | Milkshake     |  15
+
+
+The machine operates with the following rules,
+
+1.If money is enough to buy onlu 1 item, the preferance of items to be given out follows
+this order Drink > Snack such that the order price is maximum.
+
+2.If money is enough to buy two items, the machine gives out two items such that the order price is maximun.
+For example, if you insert Rs.19, it will give out Coke & Cracker instead of PopCorn + Lemonade + Rs.4 balance
+
+3. If two combinations of Snacks & Drink items are of the same price, the machine gives out the combination
+where the drink cost is highest.
+
+4.The machine can only give out 1 item of each kind. 2 drinks or 3 snacks is not possible.
+
+5. In each of the above cases, the remaining money is returned
+
+6. If money is not enough to buy anything, the money is returned.
+
+
+Input  |  Output
+-----------------------------
+10     |  Lemonade
+25     |  Milkshake & Potato Chips
+9      |  Coke & Rs.2.00
+1      |  Rs. 1.00
+
+
+__________________________________________________________________________________________________________________________________
+
+__________________________________________________________________________________________________________________________________
+
+__________________________________________________________________________________________________________________________________
+
+__________________________________________________________________________________________________________________________________
+
+
+Solution:  (Code is written in java)
+
+import java.util.Scanner;
+ public class bakri_gave_question
+ {
+     public static void main(String args[]){
+         
+         
+         Scanner sc=new Scanner(System.in);
+         //String snacks[]={};
+         //int sprice[]={};
+         String items[]={"Coke","Lemonade","Orange Juice","Milkshake","Potato chips","Cracker","Pop Corn","Cashew"};
+         int price[]={7,10,11,15,10,12,5,15};
+         int middle=4;
+         System.out.println("Enter");
+         int mon=sc.nextInt();
+         boolean cond=false;
+         String ans="yo";
+         int bal=mon+mon;
+         if (mon<5){
+         ans=""+mon;cond=true;}
+         //for euals amount of money
+         if(cond==false){
+         for(int i=0;i<items.length;i++){
+             if(mon==price[i]){
+             //System.out.println(items[i]);
+             ans=items[i];
+             cond=true;
+             break;
+            }
+            else if(mon>price[i]){
+            if((mon-price[i])<bal)
+            {
+                bal=mon-price[i];
+                ans=items[i]+" & Rs."+bal;
+                
+            }
+            }
+        }
+    
+    int i1=-1,i2=-1,dcost=-1;
+    if(cond==false){
+        bal=mon+mon;
+        for(int i=0;i<middle;i++){
+            for(int j=middle;j<items.length;j++){
+                int tot=price[i]+price[j];
+                
+                if(tot==mon){
+                    if(price[i]>dcost){
+                        i1=i;
+                        i2=j;
+                        dcost=price[i];
+                        bal=0;
+                    }
+                    
+                }
+                else if(mon>tot){
+                    
+                    if((mon-tot)<bal){
+                        i1=i;
+                        i2=j;
+                        bal=mon-tot;  
+                    }
+                }
+                
+            }
+        }
+    }
+    if(i1!=-1){
+        ans=items[i1]+" & "+items[i2];
+        if(bal!=mon+mon&&bal!=0)
+        ans=ans+" Rs. "+bal ;
+       
+    }
+    
+    
+}
+System.out.println("\nInput: "+mon+"\t\tOutput: "+ans);
+}
+}
+ 
+
