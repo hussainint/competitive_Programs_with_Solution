@@ -1,0 +1,74 @@
+Question :-
+****** Black and White **********
+
+How many ways are there to place a black and a white knight on an N * M chessboard such that they do not attack each other? 
+The knights have to be placed on different squares. A knight can move two squares horizontally and one square vertically (L shaped),
+or two squares vertically and one square horizontally (L shaped). The knights attack each other if one can reach the other in one move.
+
+Input:
+The first line contains the number of test cases T. Each of the next T lines contains two integers N and M which is size of matrix.
+
+Output:
+For each testcase, print the required answer, i.e, number of possible ways to place knights.
+
+Constraints:
+1 <= T <= 100
+1 <= N, M <= 105
+
+Example:
+Input:
+3
+2 2
+2 3
+4 5
+
+Output:
+12
+26
+312
+
+Explanation:
+Testcase 1: We can place a black and a white knight  in 12 possible ways such that none of them attracts each other.
+
+
+_______________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________
+
+Solution:-
+
+ k=a.split()
+    n=int(k[0])
+    m=int(k[1])
+    total=0
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            count=0
+            ii=i
+            jj=j
+            if jj+1<=m:
+                if ii-2>=1:
+                    count=count+1
+                if ii+2<=n:
+                    count =count+1
+            if jj+2<=m:
+                if ii-1>=1:
+                    count =count+1
+                if ii+1<=n:
+                    count =count+1
+            
+            if jj-1>=1:
+
+                if ii-2>=1: 
+                    count=count+1
+                if ii+2<=n:
+                    count=count+1
+            if jj-2>=1:
+                if ii-1>=1:
+                    count =count+1
+                if ii+1<=n:
+                    count =count+1
+            
+            ml=(n*m)-1
+            total=total+(ml-count)
+    print(total)
