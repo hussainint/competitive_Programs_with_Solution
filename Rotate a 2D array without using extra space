@@ -1,0 +1,95 @@
+Question
+**Rotate a 2D array without using extra space**
+
+You are given an n x n 2D matrix representing an image.
+Rotate the image by 90 degrees (clockwise).
+You need to do this in place.
+Note that if you end up using an additional array, you will only receive partial score.
+
+Example:
+
+If the array is 
+
+1 2 3 4 5 6 7 8 9
+
+Then the rotated array becomes: 
+
+7 4 1 8 5 2 9 6 3
+
+Input:
+
+The first line contains an integer 'T' denoting the total number of test cases.
+In each test cases, the first line contains an integer 'N' denoting the size of the 2D square matrix.
+And in the second line, the elements of the matrix A[][], each separated by a space in row major form.
+
+Output:
+
+For each test case, print the elements of the rotated array row wise, each element separated by a space. Print the output of each test case in a new line.
+
+Constraints:
+
+1 ≤ T ≤ 70
+1 ≤ N ≤ 10
+1 ≤ A [ i ][ j ] ≤ 100
+
+Example:
+
+Input:
+
+2
+3
+1 2 3 4 5 6 7 8 9
+2
+56 96 91 54
+
+Output:
+
+7 4 1 8 5 2 9 6 3
+91 56 54 96
+
+
+____________________________________________________________________________________________________________________________________
+
+____________________________________________________________________________________________________________________________________
+
+____________________________________________________________________________________________________________________________________
+Solution:- (code)
+
+
+
+
+import java.util.*;
+class twodRotate {
+	public static void main (String[] args) {
+	 int T,N;
+	 String s="";
+	 Scanner sc=new Scanner(System.in);
+	 T=sc.nextInt();
+	 for(int i=1;i<=T;i++)
+	 {
+	     N=sc.nextInt();
+	     int A[][]=new int[N][N];
+	     for(int j1=N-1;j1>=0;j1--)
+	     {
+	         for(int j2=0;j2<N;j2++)
+	            A[j2][j1]=sc.nextInt();
+	     }
+	      for(int j1=0;j1<N;j1++)
+	     {
+	         for(int j2=0;j2<N;j2++)
+	         {
+	             s=s+Integer.toString(A[j1][j2])+" ";
+	         }
+	 }
+	 s=s.trim();
+	 s=s+".";
+	}
+	for(int i=0;i<s.length()-1;i++)
+	{
+	    if(s.charAt(i)=='.')
+	    System.out.print("\n");
+	    else
+	    System.out.print(s.charAt(i));
+	}
+	}
+}
